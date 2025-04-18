@@ -146,8 +146,8 @@ Matrix4x4 MakeScaleMatrix(const Vector3& scale) {
 Matrix4x4 MakeRotateXMatrix(float radiun) {
 	Matrix4x4 rotateX = MakeIdentiy4x4();
 	rotateX.m[1][1] = std::cos(radiun);
-	rotateX.m[1][2] = std::sin(radiun);
 	rotateX.m[2][1] = -std::sin(radiun);
+	rotateX.m[1][2] = std::sin(radiun);
 	rotateX.m[2][2] = std::cos(radiun);
 
 	return rotateX;
@@ -156,8 +156,8 @@ Matrix4x4 MakeRotateXMatrix(float radiun) {
 Matrix4x4 MakeRotateYMatrix(float radiun) {
 	Matrix4x4 rotateY = MakeIdentiy4x4();
 	rotateY.m[0][0] = std::cos(radiun);
-	rotateY.m[0][2] = -std::sin(radiun);
 	rotateY.m[2][0] = std::sin(radiun);
+	rotateY.m[0][2] = -std::sin(radiun);
 	rotateY.m[2][2] = std::cos(radiun);
 
 	return rotateY;
@@ -166,8 +166,8 @@ Matrix4x4 MakeRotateYMatrix(float radiun) {
 Matrix4x4 MakeRotateZMatrix(float radiun) {
 	Matrix4x4 rotateZ = MakeIdentiy4x4();
 	rotateZ.m[0][0] = std::cos(radiun);
-	rotateZ.m[0][1] = -std::sin(radiun);
-	rotateZ.m[1][0] = std::sin(radiun);
+	rotateZ.m[1][0] = -std::sin(radiun);
+	rotateZ.m[0][1] = std::sin(radiun);
 	rotateZ.m[1][1] = std::cos(radiun);
 
 	return rotateZ;
@@ -200,8 +200,8 @@ Matrix4x4 MakeAffineMatrix(Vector3 scale, Vector3 rotate, Vector3 translate) {
 	affineMatrix.m[2][2] = scale.z * rotateMatirix.m[2][2];
 	affineMatrix.m[3][2] = translate.z;
 
-	affineMatrix.m[0][3] = scale.x * rotateMatirix.m[0][3];
-	affineMatrix.m[1][3] = scale.y * rotateMatirix.m[1][3];
+	affineMatrix.m[0][3] = 0.0f;
+	affineMatrix.m[1][3] = 0.0f;
 	affineMatrix.m[2][3] = scale.z * rotateMatirix.m[2][3];
 	affineMatrix.m[3][3] = 1.0f;
 	return affineMatrix;
